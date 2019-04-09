@@ -16,6 +16,10 @@ addons:
         key_url: https://download.docker.com/linux/ubuntu/gpg
 
 before_install:
+  - apt-get update
+  - apt-get install --only-upgrade docker-ce -y
+  - docker version
+  - which docker-compose
   - docker-compose version
 
 
