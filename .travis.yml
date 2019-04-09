@@ -1,1 +1,42 @@
-language: php
+language: minimal
+
+dist: xenial
+sudo: required
+
+os:
+  - linux
+
+matrix:
+  - os: linux
+    env: SPRYKER_SSL_ENABLE: 1
+  - os: linux
+    env: SPRYKER_SSL_ENABLE: 0
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+      - openssl
+    sources:
+      - sourceline: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        key_url: https://download.docker.com/linux/ubuntu/gpg
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install --only-upgrade docker-ce -y
+  - sudo docker version
+  - sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - sudo chmod +x /usr/local/bin/docker-compose
+  - docker-compose version
+
+
+script:
+  - sudo docker pull nginx:latest
+  - ls -la 
