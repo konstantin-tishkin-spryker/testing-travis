@@ -1,6 +1,7 @@
 language: generic
 dist: xenial
 sudo: required
+
 services:
   - docker
 
@@ -12,6 +13,7 @@ addons:
       - curl
       - gnupg-agent
       - software-properties-common
+      - openssl
     sources:
       - sourceline: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
         key_url: https://download.docker.com/linux/ubuntu/gpg
@@ -20,9 +22,11 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install --only-upgrade docker-ce -y
   - sudo docker version
-  - which docker-compose
-  - sudo docker-compose version
+  - sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - sudo chmod +x /usr/local/bin/docker-compose
+  - docker-compose version
 
 
 script:
   - sudo docker pull nginx:latest
+  - ls -la 
