@@ -1,18 +1,21 @@
-language: php
-
-#services:
-#  - docker
+language: generic
+sudo: required
+services:
+  - docker
 
 addons:
   apt:
     packages:
-      - docker-ce
-
-env:
-  - DOCKER_COMPOSE_VERSION=1.24.0
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+    sources:
+      - sourceline: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        key_url: https://download.docker.com/linux/ubuntu/gpg
 
 before_install:
-  - docker version
   - docker-compose version
 
 
