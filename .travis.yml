@@ -3,15 +3,12 @@ dist: xenial
 sudo: required
 os:
   - linux
-  - osx
 
 matrix:
   - os: linux
-    env:
-      - PREVED: MEDVED
+    env: SPRYKER_SSL_ENABLE: 1
   - os: linux
-    env: 
-      - MEDVED: PREVED
+    env: SPRYKER_SSL_ENABLE: 0
 
 #services:
 #  - docker
