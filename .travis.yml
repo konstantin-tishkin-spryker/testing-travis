@@ -1,6 +1,17 @@
 language: minimal
 dist: xenial
 sudo: required
+os:
+  - linux
+  - osx
+
+matrix:
+  - os: linux
+    env:
+      - PREVED: MEDVED
+  - os: linux
+    env: 
+      - MEDVED: PREVED
 
 #services:
 #  - docker
