@@ -24,4 +24,4 @@ before_install:
 
 
 script:
-  - curl localhost -s
+  - docker pull nginx:latest
