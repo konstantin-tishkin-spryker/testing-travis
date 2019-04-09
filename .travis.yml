@@ -1,6 +1,8 @@
 language: minimal
+
 dist: xenial
 sudo: required
+
 os:
   - linux
 
@@ -10,8 +12,8 @@ matrix:
   - os: linux
     env: SPRYKER_SSL_ENABLE: 0
 
-#services:
-#  - docker
+services:
+  - docker
 
 addons:
   apt:
