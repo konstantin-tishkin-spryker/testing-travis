@@ -1,18 +1,17 @@
 language: php
 
-services:
-  - docker
+#services:
+#  - docker
 
 addons:
   apt:
     packages:
       - docker-ce
-      - htop
+
 env:
   - DOCKER_COMPOSE_VERSION=1.24.0
 
 before_install:
-  - sudo apt install mc -y
   - docker version
   - docker-compose version
 
